@@ -1,24 +1,30 @@
-// const activeHobbies = ['Hiking'];
-// const hobbies = ['sports', 'cooking'];
+class Department{
+    private name: string;
+    private employees: string[] = [];
 
-// activeHobbies.push(...hobbies) ;
+    constructor(n: string){
+        this.name = n;
+        
+    }
+    describe(this: Department){
+        console.log(`Department: ${this.name}`)
+    }
 
-const person = {
-  firstName: "Max",
-  age: 30,
-};
+    addEmployee(employee: string){
+        this.employees.push(employee);
+    }
+    printEmployeeInformation(){
+        console.log(this.employees.length);
+        console.log(this.employees);
+    }
 
-// const copiedPerson ={...person};
+}
 
-const add = (...numbers: number[]) => {
-  return numbers.reduce((a: number, b: number) => a + b);
-};
-
-const addedNumbers = add(5, 10, 2, 3.7);
-console.log(addedNumbers);
-
-const hobbies = ["sports", "cooking"];
-const [hobby1, hobby2] = hobbies;
-
-const { firstName: fullname, age } = person;
-console.log(fullname, age, person);
+const accounting =new Department(`accounting`);
+accounting.addEmployee('Max');
+accounting.addEmployee('Manu');
+accounting.employees[2] = 'Anna';
+accounting.describe();
+accounting.printEmployeeInformation();
+// const accountingCopy = {name:"DUMMY", describe: accounting.describe};
+// accountingCopy.describe();
