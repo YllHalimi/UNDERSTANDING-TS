@@ -1,30 +1,45 @@
-class Department{
-    private name: string;
-    private employees: string[] = [];
+type AddFn = (a: number, b: number) => number;
 
-    constructor(n: string){
-        this.name = n;
-        
-    }
-    describe(this: Department){
-        console.log(`Department: ${this.name}`)
-    }
+let add: AddFn;
 
-    addEmployee(employee: string){
-        this.employees.push(employee);
-    }
-    printEmployeeInformation(){
-        console.log(this.employees.length);
-        console.log(this.employees);
-    }
+add = (n1: number, n2: number) => {
+  return n1 + n2;
+};
 
+interface Named {
+  name?: string;
+  outputName?: string;
+}
+interface Greetable extends Named {
+  greet(phrase: string): void;
+}
+// class interface
+
+class Person implements Greetable {
+  name?: string;
+  constructor(name?: string) {
+    if (name) {
+      this.name = name;
+    }
+  }
+
+  greet(phrase: string): void {
+    if(this.name){
+    console.log(phrase + ` ` + this.name);
+  }else{
+    console.log("Hi!");
+  }
+}
 }
 
-const accounting =new Department(`accounting`);
-accounting.addEmployee('Max');
-accounting.addEmployee('Manu');
-accounting.employees[2] = 'Anna';
-accounting.describe();
-accounting.printEmployeeInformation();
-// const accountingCopy = {name:"DUMMY", describe: accounting.describe};
-// accountingCopy.describe();
+//Based object interface
+let user1: Greetable;
+// user1 = {
+//     name:"Yll",
+//     greet(phrase: string){
+//         console.log(phrase + " " + this.name);
+//     }
+
+// };
+user1 = new Person();
+user1.greet("Hello, I'm ");
